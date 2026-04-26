@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Home — Simple Blog{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<div class="page-header">
+    <h1>Blog Posts</h1>
+    <p class="subtitle">Thoughts, ideas, and stories worth sharing.</p>
+</div>
+
+<!-- Blog Posts List -->
+{% if posts %}
+    <div class="posts-grid">
+        {% for post in posts %}
+        <div class="post-card">
+            <!-- Post Number Badge -->
+            <span class="post-badge">#{{ post.id }}</span>
+
+            <!-- Post Title -->
+            <h2 class="post-title">{{ post.title }}</h2>
+
+            <!-- Post Content Preview -->
+            <p class="post-content">{{ post.content }}</p>
+
+            <!-- Action Buttons: Edit and Delete -->
+            <div class="post-actions">
+                <a href="{{ url_for('edit', post_id=post.id) }}" class="btn btn-edit">&#9998; Edit</a>
+                <a href="{{ url_for('delete', post_id=post.id) }}"
+                   class="btn btn-delete"
+                   onclick="return confirm('Are you sure you want to delete this post?')">
+                    &#128465; Delete
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <!-- Empty state message -->
+    <div class="empty-state">
+        <p>&#128220; No posts yet. <a href="{{ url_for('create') }}">Create your first post!</a></p>
+    </div>
+{% endif %}
+
+{% endblock %}

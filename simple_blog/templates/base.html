@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}Simple Blog{% endblock %}</title>
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ===== Navigation Bar ===== -->
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="{{ url_for('index') }}" class="nav-brand">&#9997; SimpleBlog</a>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('create') }}" class="btn-nav">+ New Post</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== Page Content ===== -->
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ===== Footer ===== -->
+    <footer class="footer">
+        <p>Simple Blog &mdash; Built with Flask &amp; Python &bull; Experiment 5</p>
+    </footer>
+
+</body>
+</html>
